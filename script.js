@@ -1,34 +1,30 @@
-/* =========================================================
-   A Gift For You 💌
-   ✏️ EDIT EVERYTHING BELOW — messages are yours to change.
-   Photos: drop your files into the images/ folder
-   (photo1.jpg … photo5.jpg, and optionally flowers.jpg).
-   ========================================================= */
 
 const CONFIG = {
   greeting: {
-    title: "HI BEBI!",
+    title: "HI MY PERSON!",
     sub: "Would you like to see your gift?"
   },
   flowers: {
     title: "Flowers for you",
     sub: "Click the letter for a surprise",
-    vase: ["I'M SORRY", "I LOVE YOU"]
+    vase: ["Happy Birthday, my Favorite person!"]
   },
   please: {
-    title: "AW PLEASE?",
+    title: "PLEASE?",
     sub: "I prepared this gift for you"
   },
   letter: {
-    title: "I'm sorry my love",
+    title: "Happy Birthday, My Person!",
     body:
-      "I am truly sorry for hurting you. I know that saying sorry cannot erase " +
-      "what happened, but I want you to know that I mean it with all my heart. " +
-      "I never wanted to make you feel sad, unloved, or unimportant. You mean so " +
-      "much to me, and the last thing I want is to lose you over something I can " +
-      "make right. Please give me the chance to show you how much I care, one " +
-      "day at a time. I love you — today, tomorrow, and always.",
-    end: "The end… but only the beginning ❤️"
+      "Happy birthday bebi always remember that youre the most beautyfull for me. " +
+      "Always enjoy your life dont pressure yourself in my feeling cause i can wait. " +
+      "I will wait till youre ready and i will never ever feel tired cause you're always " +
+      "giving me assurance that youre mine and i will give you assurance that im yours. " +
+      "keep enjoying life bebi make tito and tita proud not just them but your brother also," +
+      "i will always be your partner, bestprend and listener and i will always be your shoulder to cry on and your pillow to sleep on" +
+      "I will always be your person and you will always be mine" +
+      "I love you so much bebi and i will never ever let you go" +
+      "I will always be here for you❤️" 
   }
 };
 
@@ -39,13 +35,13 @@ $("greetTitle").textContent = CONFIG.greeting.title;
 $("greetSub").textContent = CONFIG.greeting.sub;
 $("flowersTitle").textContent = CONFIG.flowers.title;
 $("flowersSub").textContent = CONFIG.flowers.sub;
-$("vaseLine1").textContent = CONFIG.flowers.vase[0];
-$("vaseLine2").textContent = CONFIG.flowers.vase[1];
+$("vaseLine1").textContent = CONFIG.flowers.vase[0] || "";
+$("vaseLine2").textContent = CONFIG.flowers.vase[1] || "";
 $("pleaseTitle").textContent = CONFIG.please.title;
 $("pleaseSub").textContent = CONFIG.please.sub;
 $("letterTitle").textContent = CONFIG.letter.title;
 $("letterBody").textContent = CONFIG.letter.body;
-$("theEnd").textContent = CONFIG.letter.end;
+$("theEnd").textContent = CONFIG.letter.end || "The end… but only the beginning ❤️";
 
 /* ---------------- Screen navigation ---------------- */
 const screens = ["s1", "s2", "s3", "s4"];
@@ -130,7 +126,6 @@ spawnPetal();
 spawnPetal();
 setInterval(spawnPetal, 650);
 
-/* ---------------- Confetti burst ---------------- */
 const CONFETTI_COLORS = ["#e83e8c", "#ae3ec9", "#f76707", "#2f9e44", "#fcc419", "#12b886", "#ff6b6b"];
 const CONFETTI_EMOJIS = ["🎉", "🎊", "💖", "🌷", "✨", "💛"];
 

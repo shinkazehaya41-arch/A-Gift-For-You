@@ -120,7 +120,7 @@ function heartBurst(count = 20) {
     setTimeout(() => {
       const h = document.createElement("span");
       h.className = "heart";
-      h.textContent = ["❤️", "💖", "💕", "🌹"][Math.floor(Math.random() * 4)];
+      h.textContent = ["❤️", "💖", "💕", "🌷"][Math.floor(Math.random() * 4)];
       h.style.left = Math.random() * 100 + "vw";
       h.style.setProperty("--drift", (Math.random() * 120 - 60) + "px");
       h.style.fontSize = 18 + Math.random() * 22 + "px";

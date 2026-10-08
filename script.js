@@ -7,7 +7,7 @@
 
 const CONFIG = {
   greeting: {
-    title: "HI MY BABY!",
+    title: "HI BEBI!",
     sub: "Would you like to see your gift?"
   },
   flowers: {

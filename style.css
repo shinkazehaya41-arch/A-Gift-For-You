@@ -201,7 +201,7 @@ body {
   filter: drop-shadow(0 14px 22px rgba(70, 20, 30, .35));
 }
 
-.roses { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; z-index: 2; }
+.roses { position: absolute; top: 60px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; z-index: 2; }
 .rose { font-size: 5.4rem; line-height: 1; filter: saturate(1.15) drop-shadow(0 6px 8px rgba(90, 10, 25, .35)); }
 .rose.r-a { transform: translateY(34px) rotate(-16deg); }
 .rose.r-b { transform: translateY(2px); animation: roseSway 3.4s ease-in-out infinite; }
@@ -213,24 +213,25 @@ body {
 
 .stems {
   position: absolute;
-  top: 128px;
+  top: 134px;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+  height: 120px;
   z-index: 1;
 }
 .stems i {
   display: block;
+  position: absolute;
+  top: 0;
   width: 5px;
-  height: 130px;
+  height: 120px;
   background: linear-gradient(180deg, #3f7d3a, #2c5a29);
   border-radius: 4px;
   transform-origin: top center;
 }
-.stems i:first-child { transform: rotate(-10deg); }
-.stems i:last-child  { transform: rotate(10deg); }
+.stems i:nth-child(1) { left: calc(50% - 94px); transform: rotate(-20deg); }
+.stems i:nth-child(2) { left: calc(50% - 2px); }
+.stems i:nth-child(3) { left: calc(50% + 88px); transform: rotate(20deg); }
 
 .vase {
   position: absolute;

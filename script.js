@@ -57,16 +57,17 @@ function show(id) {
   blip(id === "s4" ? 740 : 520);
 }
 
-$("yesBtn").addEventListener("click", () => show("s2"));
+$("yesBtn").addEventListener("click", () => { show("s2"); confetti(); });
 $("noBtn").addEventListener("click", () => show("s3"));
 $("backBtn").addEventListener("click", () => show("s1"));
 $("backFromS2").addEventListener("click", () => show("s1"));
 $("backFromS4").addEventListener("click", () => show("s2"));
-$("restartBtn").addEventListener("click", () => show("s1"));
+$("restartBtn").addEventListener("click", () => { show("s1"); confetti(24); });
 
 function openLetter() {
   show("s4");
   heartBurst(24);
+  confetti(44);
 }
 $("letterBtn").addEventListener("click", openLetter);
 $("bouquet").addEventListener("click", openLetter);
@@ -97,22 +98,62 @@ function blip(freq = 520, dur = 0.1) {
 /* ---------------- Falling petals ---------------- */
 const petalLayer = $("petalLayer");
 
+const PETAL_COLORS = [
+  "linear-gradient(135deg, #ff8fab, #e83e8c)",
+  "linear-gradient(135deg, #ffd43b, #f76707)",
+  "linear-gradient(135deg, #b197fc, #7048e8)",
+  "linear-gradient(135deg, #63e6be, #2f9e44)",
+  "linear-gradient(135deg, #ffa8cc, #e83e8c)"
+];
+const PETAL_EMOJIS = ["🌷", "🌸", "💮", "🌼", "🍀"];
+
 function spawnPetal() {
   const p = document.createElement("span");
-  p.className = "petal";
   p.style.left = Math.random() * 100 + "vw";
   p.style.setProperty("--sway", (Math.random() * 160 - 80) + "px");
-  const size = 10 + Math.random() * 12;
-  p.style.width = size + "px";
-  p.style.height = size + "px";
   p.style.animationDuration = 7 + Math.random() * 6 + "s";
-  if (Math.random() < 0.3) p.style.background = "linear-gradient(135deg, #e05a76, #a03a48)";
+
+  if (Math.random() < 0.3) {
+    p.className = "petal-emoji";
+    p.textContent = PETAL_EMOJIS[Math.floor(Math.random() * PETAL_EMOJIS.length)];
+  } else {
+    p.className = "petal";
+    const size = 10 + Math.random() * 12;
+    p.style.width = size + "px";
+    p.style.height = size + "px";
+    p.style.background = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
+  }
   petalLayer.appendChild(p);
   setTimeout(() => p.remove(), 14000);
 }
 spawnPetal();
 spawnPetal();
-setInterval(spawnPetal, 750);
+setInterval(spawnPetal, 650);
+
+/* ---------------- Confetti burst ---------------- */
+const CONFETTI_COLORS = ["#e83e8c", "#ae3ec9", "#f76707", "#2f9e44", "#fcc419", "#12b886", "#ff6b6b"];
+const CONFETTI_EMOJIS = ["🎉", "🎊", "💖", "🌷", "✨", "💛"];
+
+function confetti(count = 36) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const c = document.createElement("span");
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.setProperty("--sway", (Math.random() * 220 - 110) + "px");
+      c.style.animationDuration = 2.4 + Math.random() * 2 + "s";
+
+      if (Math.random() < 0.25) {
+        c.className = "confetti-emoji";
+        c.textContent = CONFETTI_EMOJIS[Math.floor(Math.random() * CONFETTI_EMOJIS.length)];
+      } else {
+        c.className = "confetti" + (Math.random() < 0.4 ? " round" : "");
+        c.style.background = CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)];
+      }
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 5000);
+    }, i * 40);
+  }
+}
 
 /* ---------------- Heart burst (when letter opens) ---------------- */
 function heartBurst(count = 20) {
@@ -131,6 +172,8 @@ function heartBurst(count = 20) {
 }
 
 /* ---------------- Sparkle cursor ---------------- */
+const SPARK_COLORS = ["#e83e8c", "#ae3ec9", "#f76707", "#2f9e44", "#fcc419", "#12b886"];
+const SPARK_GLYPHS = ["✦", "❀", "🌷", "✨", "💛", "🌸"];
 let lastSpark = 0;
 document.addEventListener("pointermove", (e) => {
   if (e.pointerType && e.pointerType !== "mouse") return;
@@ -140,11 +183,11 @@ document.addEventListener("pointermove", (e) => {
 
   const s = document.createElement("span");
   s.className = "sparkle";
-  s.textContent = Math.random() < 0.5 ? "✦" : "❀";
+  s.textContent = SPARK_GLYPHS[Math.floor(Math.random() * SPARK_GLYPHS.length)];
   s.style.left = e.clientX + "px";
   s.style.top = e.clientY + "px";
   s.style.opacity = 0.85;
-  if (Math.random() < 0.4) s.style.color = "#a03a48";
+  s.style.color = SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)];
   document.body.appendChild(s);
   setTimeout(() => s.remove(), 850);
 });
